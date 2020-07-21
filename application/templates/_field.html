@@ -1,0 +1,14 @@
+{% macro renderfield(field) %}
+<div class="form-group">
+    {% if field.errors %}
+        {{ field(class="form-control form-control-lg is-invalid" , placeholder="field") }}
+        <div class="invalid-feedback">
+            {% for error in field.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    {% else %}
+        {{ field(class="form-control form-control-lg", placeholder="Användarnamn") }}
+    {% endif %}
+</div>
+{% endmacro %}

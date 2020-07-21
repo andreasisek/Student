@@ -1,0 +1,128 @@
+{% from "_field.html" import renderfield %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Isek-student</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='login.css')}}">
+</head>
+<body>
+
+  <div class="modal-dialog text-center">
+      <div class="col-sm-9 main-section">
+        <div class="modal-content">
+            <div class="col-12 user-img">
+                <img src="{{url_for('static',filename='isek.png')}}">
+            </div>
+            <div class="quote">
+                <p class="text-light font-italic">"Gift dig aldrig med en karriärist" <br/> - Mona B </p>
+             </div>
+          
+          <div class="col-12 form-input">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-lg is-invalid" , placeholder="för och efternamn") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(class="form-control form-control-lg", placeholder="för och efternamn") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid" , placeholder="email") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg", placeholder="email") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid" , placeholder="password") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg", placeholder="lösenord") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg is-invalid" , placeholder="confirm_password") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control form-control-lg", placeholder="bekräfta lösenord") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {% if form.gender.errors %}
+                        {{ form.gender(class="form-control form-control-lg is-invalid" , placeholder="gender") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.gender.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.gender(class="form-control form-control-lg custom-select", style="", placeholder="kön") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {% if form.food_preference.errors %}
+                        {{ form.food_preference(class="form-control form-control-lg is-invalid" , placeholder="matpreferens") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.food_preference.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.food_preference(class="form-control form-control-lg", placeholder="matpreferens") }}
+                    {% endif %}
+
+                </div>
+                <div class="form-group">
+                    {% if form.semester.errors %}
+                        {{ form.semester(class="form-control form-control-lg is-invalid" , placeholder="årskurs") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.semester.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.semester(class="form-control form-control-lg", placeholder="årskurs") }}
+                    {% endif %}
+
+                </div>
+              <div>
+                {{ form.submit(class="btn btn-success") }}
+              </div>
+            </form>
+          </div>
+      </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+

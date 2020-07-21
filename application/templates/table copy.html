@@ -1,0 +1,47 @@
+
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+	<body>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		  <script src="{{ url_for('static', filename='table.js') }}"></script>
+		<table class="table">
+			<thead>
+			  <tr>
+				<th scope="col">Närvarande</th>
+				<th scope="col">isek-id</th>
+				<th scope="col">Namn</th>
+				<th scope="col">Email</th>
+				<th scope="col">Matprefferenser</th>
+				<th scope="col">Prickar</th>
+			  </tr>
+			</thead>
+			<tbody>
+				{% for item in table %}
+				<div id="userSection">
+			  <tr>
+				<td>
+					<div class="btn-group-toggle" data-toggle="buttons" user_id="{{ item.user_id }}">
+						<label class="btn btn-secondary active">
+						  <input type="checkbox" checked autocomplete="off"> Checked
+						</label>
+					  </div>
+				</td>
+				<td>{{ item.user_id }}</td>
+				<td>{{ item.user.username }}</td>
+				<td>{{ item.user.email }}</td>
+				<td>{{ item.user.user_info  }}</td>
+				<td>
+					
+						
+					<button class="btn btn-primary updateButton" user_id="{{ item.user.id }}">Update</button>
+					</div>
+				</td>
+			  </tr>
+			</div>
+			{% endfor %}
+			</tbody>
+		  </table>
+		  
+	</body>

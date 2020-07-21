@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+<form method="POST" action="" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
+  <article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ post.author.username }}</a>
+        <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+        {% if post.author == current_user %}
+          <div>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
+            <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#DeleteModalCenter">Delete</button>
+          </div>
+        {% endif %}
+      </div>
+      <h2 class="article-title">{{ post.title }}</h2>
+      <p class="article-content">{{ post.content }}</p>
+      <div class="mb-3 pics animation all 2">
+        <img class="img-fluid" alt="Responsive image" src="{{ url_for('static', filename='post_pics/' + post.image_file) }}">
+    </img>
+    <div class="text-center">
+      <p class="cardbox-attending" style="padding: 10px;"><a class="btn btn-outline-secondary" href="#"><svg class="bi bi-calendar2-plus-fill" style="position:relative; top:-3px" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zm-2 3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-1zm6.5 5a.5.5 0 0 0-1 0V10H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V11H10a.5.5 0 0 0 0-1H8.5V8.5z"/>
+      </svg> Anmäl dig</a></p></a>
+      
+      <input type="submit" name="submit_button" value="Do Something">
+ 
+    
+  </div><!--base-->
+    </div>
+  </article>
+
+<article class="media content-section">
+  {{ form_reply.message(class ="form-control", rows="2") }}
+  {{ form_reply.submitreply() }}
+</article>
+
+<article class="media content-section">
+  <b> Kommentarer {{ replies|length  }}</b>
+  {% for reply in replies %}
+    {{ reply.user.username }}
+    {{ reply.message }}
+    
+
+
+  {% endfor %}
+</article>
+
+<input type="submit" name="submit_button" value="Do Something">
+
+<!-- Modal -->
+    <div class="modal fade" id="DeleteModalCenter" tabindex="-1" role="dialog" aria-labelledby="DeleteModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="DeleteModalLongTitle">Vill du verkligen ta bort inlägget?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+            <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST">
+                <input class="btn btn-danger" type="submit" value="Ta bort">
+            </form>
+            </div>
+        </div>
+        </div>
+      </form>
+    </div>
+{% endblock content %}
+

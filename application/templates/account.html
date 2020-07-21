@@ -1,0 +1,165 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='test.css')}}">
+<section class="hero ">
+  <form method="POST" action="" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="cardbox shadow-lg bg-white">
+                    <div class="cardbox-heading"> <!-- Heading start-->
+                      <div class="media m-0">
+                        <div class="d-flex mr-2">
+                          <a href=""><img class="img-fluid rounded-circle" src="{{ image_file }}" alt="User"></a>
+                      </div>
+                      <div class="media-body">
+                        <a class="article-title" >{{ current_user.username }}</a>
+                      </br>
+                      <a> {{ current_user.email }} <br>
+                    isek-id : <b>{{ current_user.id }} </b></a>
+                    </div>  
+                  </div>          
+                </div><!-- Heading-->
+                <div style="padding:15px;">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>   
+                <div class="form-group">
+                    {{ form.food_preference.label(class="form-control-label") }}
+                    {% if form.food_preference.errors %}
+                        {{ form.food_preference(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.food_preference.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.food_preference(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.semester.label(class="form-control-label") }}
+                    {% if form.semester.errors %}
+                        {{ form.semester(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.semester.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.semester(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                  <p>
+                    <a class="cardbox-attending btn btn-outline-secondary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    Byt lösenord
+                    </a>
+                    
+                  </p>
+                  <div class="collapse" id="collapseExample">
+                  
+                    <div class="card card-body">
+                      <div class="form-group">
+                        {{ form.old_password.label(class="form-control-label") }}
+                        {% if form.old_password.errors %}
+                            {{ form.old_password(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.old_password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.old_password(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                      {{ form.new_password.label(class="form-control-label") }}
+                      {% if form.new_password.errors %}
+                          {{ form.new_password(class="form-control form-control-lg is-invalid") }}
+                          <div class="invalid-feedback">
+                              {% for error in form.new_password.errors %}
+                                  <span>{{ error }}</span>
+                              {% endfor %}
+                          </div>
+                      {% else %}
+                          {{ form.new_password(class="form-control form-control-lg") }}
+                      {% endif %}
+                  </div>
+                  <div class="form-group">
+                    {{ form.confirm_password.label(class="form-control-label") }}
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                      
+                    </div>
+                  
+                  </div>
+                </div>
+                
+                
+                {{ form.picture.label() }}
+                {{ form.picture(class="form-control-file") }}
+                {% if form.picture.errors %}
+                    {% for error in form.picture.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                    {% endfor %}
+                {% endif %}
+                
+                
+                
+              
+                
+                  
+                </div> <!-- content-->
+                
+                <div class="text-center"> <!-- Attendning button-->
+                  <div style="border-top: 2px solid #f4f4f4;"> 
+                      <div style="margin-top:8px;">
+                          <form>
+                              <div class="form-group">
+                                  {{ form.submit(class="cardbox-attending btn btn-outline-secondary") }}
+                              </div>
+                            </form>
+                      </div>
+                </div>
+                
+        </div><!--base-->
+    </div>
+  </form>
+</div> <!-- Container-->
+</section>
+
+{% endblock content %}
+

@@ -1,0 +1,139 @@
+{% extends "layout.html" %}
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>   
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='test.css')}}">
+<!-- För grafer-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0-rc.1/Chart.bundle.js"></script>
+ <!-- TestRow -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><b>{{ user_info.user_type }}</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Kalender
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="{{url_for('user.calendar_event')}}">Prellade event</a>
+            <a class="dropdown-item" href="#">Email-utskick</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Historik
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Sektionen</a>
+              <a class="dropdown-item" href="#">utskottet</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Tidigare event</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Studenthälsa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Topplistan</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Slasken
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Citat</a>
+              <a class="dropdown-item" href="#">Medlemmar</a>
+            </div>
+          </li>
+      </ul>
+    </div>
+  </nav>
+
+<!-- Row 1-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="cardbox shadow-lg bg-white col-lg-4" style="margin: 10px;">
+            <div style="padding:5px;">
+                <h5 class="card-title text-center">Jämställdhet</h5>  
+                <div class="d-flex flex-row justify-content-center">            
+                    <div class="text-center "><img style="width:50%;" src="{{ url_for('static', filename='extras/woman.svg' )}}"><br>{{ percentage_female }}</div>
+                    <div class="text-center"><img style="width:50%;" src="{{ url_for('static', filename='extras/man.svg' )}}"><br>{{ percentage_male }}</div>
+                </div>  
+            </div>
+        </div>
+        <div class="cardbox shadow-lg bg-white col-lg" style="margin: 10px;">
+            <div style="padding:5px;">
+                <h5 class="text-center">Skapade event</h5>
+                <h1 class="align-center text-center">{{ num_events }}</h1>
+
+            </div>
+        </div>
+        <div class="cardbox shadow-lg bg-white col-lg" style="margin: 10px;">
+            <div style="padding:5px;">
+            <h5 class="text-center">Totala besökare</h5>
+            <h1 class="align-center text-center">{{ num_tot }}</h1>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<!-- End Row 1-->
+<!-- Row 2-->
+<div class="container-fluid" style="color:black;">
+    <div class="row">
+        <div class="cardbox shadow-lg bg-white col-lg-8" style="margin: 10px;">
+            <div style="padding:5px;">
+                <h5 class="card-title text-center">Årshjulet</h5>  
+                <div class="d-flex flex-row" style="padding:10px;">            
+                    <b>Datum:</b><p>påbörja stockholmsresan </p>
+                </div>  
+            </div>
+        </div>
+        
+        <div class="cardbox shadow-lg bg-white col-lg" style="margin: 10px;">
+            <div style="padding:5px;">
+            <h5 class="text-center">Snabblänkar</h5>
+            <a class="text-left article-title" style="margin-left:10px;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><b>1: </b>hemlig klickbar länk</a><br>
+            <b class="text-left" style="margin-left:10px;">2:</b><br>
+            <b class="text-left" style="margin-left:10px;">3:</b><br>
+            <b class="text-left" style="margin-left:10px;">4:</b><br>
+            <b class="text-left" style="margin-left:10px;">5:</b><br>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Row 2-->
+<!-- Row 3-->
+<div class="container">
+    <div class="row">
+        <div class="cardbox shadow-lg bg-white col-sm w-25" style="margin: 10px;">
+            <div style="padding:10px;">
+                <h5 class="text-center">Fördelning årskuser</h5>
+                    <canvas style="margin-top:15%;" id="semesterChart"></canvas>
+                    <script src="static/semester_graph.js"></script>
+            </div>
+        </div>
+        <div class="cardbox shadow-lg bg-white col-lg-7" style="margin: 10px;">
+            <div style="padding:5px;">
+                <h5 class="text-center">sektionens årshistorik</h5>
+                <div class="chart-container">
+                    <canvas id="lineChart"></canvas>
+                    <script src="static/guild_graph.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Row 3-->
+</div>
+
+
+<!-- /#wrapper -->
+ <!-- Menu Toggle Script -->
+
+{% endblock content %}
+

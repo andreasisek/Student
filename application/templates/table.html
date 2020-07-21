@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+	<body>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		  <script src="{{ url_for('static', filename='table.js') }}"></script>
+
+<div class="container" style="margin-top: 100px;">
+	<div class="row justify-content-center">
+		
+			<div class="cardbox shadow-lg bg-white" style="width:150%;">
+		<table class="table" style="border-top: 2px solid #f4f4f4;">
+			<thead>
+			  <tr>
+				<th scope="col">Närvarande</th>
+				<th scope="col">isek-id</th>
+				<th scope="col">Namn</th>
+				<th scope="col">Email</th>
+				<th scope="col">Matprefferenser</th>
+				<th scope="col">Prickar</th>
+			  </tr>
+			</thead>
+			<tbody>
+				{% for item in table %}
+				<div id="userSection">
+					<tr>
+					  <td>
+						{% if item.present == "notpresent"%}
+							<button type="checkbox" user_id="{{ item.user_id }}" event_id="{{ event_id }}" class="btn updateButton btn-dark">registrera</button>
+						{% endif %}	
+						{% if item.present == "present"%}
+							<button type="checkbox" user_id="{{ item.user_id }}" event_id="{{ event_id }}" class="btn updateButton btn-success">avregistrera</button>
+						{% endif %}	
+
+					</td>
+					  <td>{{ item.user_id }}</td>
+					  <td><span id="userNumber{{ item.user_id }}">{{ item.user.username }}</span></td>
+					  <td>{{ item.user.email }}</td>
+					  <td>{{ item.user.user_info  }}</td>
+					  <td>
+						{% if item.warning == "nowarning"%}
+						  <button type="checkbox" user_id="{{ item.user_id }}" event_id="{{ event_id }}" class="btn warningButton btn-dark">pricka</button>
+						{% endif %}	
+						{% if item.warning == "warning"%}
+						  <button type="checkbox" user_id="{{ item.user_id }}" event_id="{{ event_id }}" class="btn warningButton btn-success">avpricka</button>
+						{% endif %}	
+						</td>
+					</tr>
+				  </div>
+			{% endfor %}			
+			</tbody>
+		  </table>
+		
+	</div>
+</div>
+		
+	</body>
+{% endblock content %}

@@ -1,0 +1,223 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<form method="POST" action="" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
+  
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='test.css')}}">
+  <section class="hero ">
+      <div class="container ">
+          <div class="row justify-content-center">
+              <div class="col-lg-9">
+                  <div class="cardbox shadow-lg bg-white">
+                      <div class="cardbox-heading">
+                        {% if post.author == current_user %}
+                        
+                        <div class="dropdown dropdown-post float-right" >
+                          <a class="nav-item nav-link" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <svg class="bi bi-caret-down-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z"/>
+                              </svg>
+                          </a>
+                          <!-- Falldown meny, account etc.. -->
+                          <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" class="nav-item nav-link" href="{{ url_for('posts.update_post', post_id=post.id) }}">Uppdatera</a>
+                            <a class="dropdown-item" type="button" data-toggle="modal" data-target="#DeleteModalCenter">Radera</a>
+                            <a class="dropdown-item" class="nav-item nav-link" href="{{ url_for('posts.table', post_id=post.id) }}">A mälda</a>
+                          </div>
+                        </div>
+                        {% endif %}
+                        <div class="media m-0">
+                          <div class="d-flex mr-2">
+                              <a href=""><img class="img-fluid rounded-circle" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}" alt="User"></a>
+                          </div>
+                          
+                          <div class="media-body">
+                            <a class="article-title" href="{{url_for('posts.user_posts', id=post.author.id)}}">{{ post.author.username }}</a>
+                          </br>
+                              <small><i class="icon ion-md-time"></i> {{ post.date_posted.strftime('%d, %B, %Y')  }}</span></small>
+                          </br>
+                          {% if post.event_id !=None %}
+                                  <small class="text-muted mr-1"><svg class="bi bi-geo-alt" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                              </svg>
+                              {{ post.event.location }}
+                              </small>
+                              <small class="text-muted mr-1"><svg class="bi bi-calendar-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M0 2a2 2 0 012-2h12a2 2 0 012 2H0z"/>
+                                  <path fill-rule="evenodd" d="M0 3h16v11a2 2 0 01-2 2H2a2 2 0 01-2-2V3zm6.5 4a1 1 0 100-2 1 1 0 000 2zm4-1a1 1 0 11-2 0 1 1 0 012 0zm2 1a1 1 0 100-2 1 1 0 000 2zm-8 2a1 1 0 11-2 0 1 1 0 012 0zm2 1a1 1 0 100-2 1 1 0 000 2zm4-1a1 1 0 11-2 0 1 1 0 012 0zm2 1a1 1 0 100-2 1 1 0 000 2zm-8 2a1 1 0 11-2 0 1 1 0 012 0zm2 1a1 1 0 100-2 1 1 0 000 2zm4-1a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd"/>
+                              </svg>
+                              {{ post.event.event_date.strftime( '%d %b') }}
+                              </small>
+                              <small class="text-muted mr-1">
+                                  <svg class="bi bi-clock-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8 3.5a.5.5 0 00-1 0V9a.5.5 0 00.252.434l3.5 2a.5.5 0 00.496-.868L8 8.71V3.5z" clip-rule="evenodd"/>
+                                  </svg>
+                                  {{ post.event.event_time }}
+                              </small>
+                              <small class="text-muted mr-1">
+                                  <svg class="bi bi-bell-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8 16a2 2 0 002-2H6a2 2 0 002 2zm.995-14.901a1 1 0 10-1.99 0A5.002 5.002 0 003 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                                  </svg>
+                                  {{ post.event.last_registration.strftime( '%d %b') }}
+                              </small>
+                              <small class="text-muted mr-1">
+                                  <svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 100-6 3 3 0 000 6zm-5.784 6A2.238 2.238 0 015 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 005 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" clip-rule="evenodd"/>
+                              </svg>
+                                  ({{ post.event.attendingevent|length }}){% if post.event.max_participants==0  %}(∞){% else %}({{ post.event.max_participants }}) {% endif %}  
+                              </small>
+                            {% endif %}
+                          </div>
+                      </div> 
+                  </div><!-- Heading-->
+                  <div class="cardbox-content">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                      {% if messages %}
+                          {% for category, message in messages %}
+                              <div class="alert alert-{{ category }}" style="margin-bottom:-80px;">{{ message }}
+                              </div>
+                          {% endfor %}
+                      {% endif %}
+                    {% endwith %}
+                      <b> <a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></b>
+                      </br>
+                    </div>
+                      <div class="cardbox-content">
+                      <a class="article-title">{{ post.content }}</a>
+                    
+                  </div> <!-- Content-->
+                  <div class="cardbox-item">
+                    {% if post.image_file != "" %}
+                      <img class="img-fluid w-100" src="{{ url_for('static', filename='post_pics/' + post.image_file) }}">
+                      </img>
+                      <br>
+                    {% endif %}
+                    {% if post.youtube !=None %}
+                      <div class="video-container">
+                        <iframe  style='position: absolute; background: transparent; width: 100%; height:100%;' src="{{ post.youtube }}?color=white?modestbranding=1?showinfo=0&rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+                      {% endif %}
+                  </div> <!-- item-->
+                  <div class="cardbox-base">
+                    
+                          <small class="text-muted mr-1">
+                            {% if like_status!="active" %}
+                            <a class="article-title" href="{{ url_for('posts.like_post', post_id=post.id) }}">
+                            <svg class="bi bi-trash2-fill fa-lg" href="#" style="position:relative; top:-3px" width="1.2em" height="1.2em"  viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M2.037 3.225l1.684 10.104A2 2 0 0 0 5.694 15h4.612a2 2 0 0 0 1.973-1.671l1.684-10.104C13.627 4.224 11.085 5 8 5c-3.086 0-5.627-.776-5.963-1.775z"/>
+                              <path fill-rule="evenodd" d="M12.9 3c-.18-.14-.497-.307-.974-.466C10.967 2.214 9.58 2 8 2s-2.968.215-3.926.534c-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466zM8 5c3.314 0 6-.895 6-2s-2.686-2-6-2-6 .895-6 2 2.686 2 6 2z"/>
+                              </svg> {{ post.likes|length }} Slots </a>
+
+                            {% else %}
+                            <a class="active-like" href="{{ url_for('posts.like_post', post_id=post.id) }}">
+                              <svg class="bi bi-trash2-fill fa-lg" href="#" style="position:relative; top:-3px" width="1.2em" height="1.2em"  viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.037 3.225l1.684 10.104A2 2 0 0 0 5.694 15h4.612a2 2 0 0 0 1.973-1.671l1.684-10.104C13.627 4.224 11.085 5 8 5c-3.086 0-5.627-.776-5.963-1.775z"/>
+                                <path fill-rule="evenodd" d="M12.9 3c-.18-.14-.497-.307-.974-.466C10.967 2.214 9.58 2 8 2s-2.968.215-3.926.534c-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466zM8 5c3.314 0 6-.895 6-2s-2.686-2-6-2-6 .895-6 2 2.686 2 6 2z"/>
+                                </svg> {{ post.likes|length }} Slots </a>
+                            {% endif %}
+
+                              
+                            
+                              
+                              
+                              <a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">
+                                <svg class="bi bi-chat-fill" style="position:relative; top:-3px" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
+                                  </svg> {{ post.replies|length }} kommentarer</a>
+                                </a>
+                          </small>
+                          
+                          
+
+                  </div> <!--Base-->
+                  <div class="text-center"> <!-- Attendning button-->
+                    <div style="border-bottom: 2px solid #f4f4f4; ">
+                      
+                      
+                      {% if state=="closed" %}
+                        <div class="cardbox-attending btn btn-outline-secondary">Anmälan är stängd</button>
+                      {% endif %}
+                      
+                        
+
+                      {% if state=="notattendning" %}
+                        <form>
+                          <button type="submit" value="coming" name="register" class="cardbox-attending btn btn-outline-secondary">Jag kommer!</button>
+                          </form>
+                      {% endif %}
+                      {% if state=="attending" %}
+                      <form>
+                        <button type="submit" name="register" class="cardbox-attending btn btn-outline-secondary">Avanmäl</button>
+                        </form>
+                    {% endif %}
+
+                      
+                  </div>
+                </div>
+                  <div class="comment"><!-- Comments-->
+                    <div class="form-group text-center" style="margin-left:60px; margin-right:60px; margin-bottom:-30px; margin-top: 15px;">
+                    
+                      {% if form_reply.message.errors %}
+                          {{ form_reply.message(class="form-control form-control-lg is-invalid") }}
+                          <div class="invalid-feedback">
+                              {% for error in form_reply.message.errors %}
+                                  <span>{{ error }}</span>
+                              {% endfor %}
+                          </div>
+                      {% else %}
+                          {{ form_reply.message(class="form-control Button form-control-lg") }}
+                      {% endif %}
+                      
+                    <div class="form-group">
+                      <button type="checkbox" name="comment" event_id="{{ post.id }}" class="btn commentButton cardbox-attending btn-outline-secondary">kommentera</button>
+                      {% for reply in replies %}  
+                      <div class="cardbox shadow-sm cardbox-commentfield mb-3" style="margin-left:20px;">
+                          
+                          <a href=""><img class="img-fluid rounded-circle float-left" style="margin-left: -60px; margin-top:-10px;" src="{{ url_for('static', filename='profile_pics/' + reply.user.image_file) }}" alt="User"></a>
+                          <div class="card-commentfield-text" style="margin-left:40px;"> 
+                              <div class="cardbox-commentfield" style="margin-left:30px;">
+                                
+                                
+                                <p class="float-left" style="margin-left:-70px;"> <b>{{ reply.user.username  }}</b>  {{ reply.message }} </p>
+                            </div>
+                                
+                            </div>                           
+                        </div>
+                        
+                      {% endfor %}
+                      <br>
+                      </div>
+                  </div>
+
+                
+          
+          </div><!--base-->
+      </div>      
+            
+  </div> <!-- Container-->
+  
+</section>
+
+<!-- Modal -->
+    <div class="modal fade" id="DeleteModalCenter" tabindex="-1" role="dialog" aria-labelledby="DeleteModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="DeleteModalLongTitle">Vill du verkligen ta bort inlägget?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+            <form action="{{ url_for('posts.delete_post', post_id=post.id) }}" method="POST">
+                <input class="btn btn-danger" type="submit" value="Ta bort">
+            </form>
+            </div>
+        </div>
+        </div>
+      </form>
+    </div>
+{% endblock content %}
+

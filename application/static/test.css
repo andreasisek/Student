@@ -1,0 +1,327 @@
+/*
+*
+* ===========================================================
+*     HERO SECTION
+* ===========================================================
+*
+*/
+
+
+
+.hero {
+    padding: 6.25rem 0px !important;
+    margin: px !important;
+  }
+  .cardbox {
+    border-radius: 3px;
+    margin-bottom: -50px;
+    margin-top: -100px;
+    padding: 0px !important;
+  }
+  
+  /* ------------------------------- */
+  /* Cardbox Heading
+  ---------------------------------- */
+  .cardbox .cardbox-heading {
+    padding: 16px;
+    margin: 0;
+    border-bottom: 2px solid #f4f4f4;
+  }
+.dropdown-post:hover {
+  color: #72012e;
+}
+.comments {
+  border-top: 1px solid #f4f4f4;
+  padding: 15px;
+  margin-top: 20px;
+  color: #72012e;
+}
+
+.booking-field {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-bottom: 2px solid #f4f4f4;
+}
+  .cardbox .btn-flat.btn-flat-icon {
+   border-radius: 50%;
+   font-size: 24px;
+   height: 12px;
+   width: 12px;
+   padding: 0;
+   overflow: hidden;
+   color: #fff !important;
+   background: #b6b6b5;
+   
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  }
+
+  .active-like{ 
+    color: #72012e;
+    text-decoration: none; 
+  }
+  .active-like:hover{ 
+    color: #444444;
+    text-decoration: none; 
+  }
+
+  .cardbox-content{
+    padding: 10px; 
+    margin-top: -90px;
+    margin-bottom: -20px;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+  }
+
+  .cardbox-title{
+    padding: 10px; 
+    margin-top: -20px;
+    white-space: pre-line;
+    overflow-wrap: break-word;
+  }
+
+  .cardbox-base{
+    padding: 16px;
+    color: #727272;
+    border-top: 2px solid #f4f4f4;
+    border-bottom: 2px solid #f4f4f4;
+  }
+
+  .video-container {
+    overflow: hidden;
+    position: relative;
+    width:100%;
+}
+
+.video-container::after {
+    padding-top: 56.25%;
+    display: block;
+    content: '';
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+  /* ------------------------------- */
+  /* Media Section
+  ---------------------------------- */
+  .media {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+  }
+  .d-flex {
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+  .media .mr-3{
+    margin-right: 1rem !important;
+  }
+  .media img{
+    width: 80px !important;
+    height: 80px !important;
+    margin-top: 5px;
+    padding: 2px;
+    border: 2px solid #58073d13;
+  } 
+  .media-body {
+    -ms-flex: 1;
+    flex: 1;
+    padding: .4rem !important;
+  }
+ 
+  
+  
+  /* ------------------------------- */
+  /* Cardbox Item
+  ---------------------------------- */
+  .cardbox .cardbox-item {
+      position: relative;
+      display: block;
+  }
+  .cardbox .cardbox-item img{
+  }
+  .img-responsive{
+      display: block;
+      max-width: 1000%;
+      height: auto;
+  }	
+  .fw {
+      width: 100% !important;
+      height: auto;
+  }
+  
+  
+  /* ------------------------------- */
+  /* Cardbox Base
+  ---------------------------------- */
+
+  .cardbox-base ul{
+   margin: 10px 0px 10px 15px!important; 
+   padding: 10px !important;
+   font-size: 0px;	
+    display: inline-block;
+  }
+  .cardbox-base li {
+    list-style: none;
+    margin: 0px 0px 0px -8px !important;
+    padding: 0px 0px 0px 0px !important;
+    display: inline-block;
+  }
+  
+  .cardbox-base li a{
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+  .cardbox-base li a i{
+   position: relative;
+   top: 4px; 
+   font-size: 16px;
+   color: #8d8d8d;
+   margin-right: 15px;
+  }
+  .cardbox-base li a span{
+   font-family: 'Rokkitt', serif;
+   font-size: 14px;
+   color: #8d8d8d;
+   margin-left: 20px;
+   position: relative;
+   top: 5px; 
+  }
+  .cardbox-base li a em{
+   font-family: 'Rokkitt', serif;
+   font-size: 14px;
+   color: #8d8d8d;
+   position: relative;
+   top: 3px; 
+  }
+  .cardbox-base li a img{
+    width: 25px;
+    height: 25px;
+    margin: 0px !important;
+    border: 2px solid #fff;
+  }
+  
+  .btn-outline-secondary:hover {
+    background-color: #72012e;
+    border: 1px solid #daf1ff;
+
+
+  /* ------------------------------- */
+  /* Cardbox Comments
+  ---------------------------------- */
+  }
+
+  .cardbox-attending {
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+  }
+.cardbox-commentfield {
+  margin: 10px;
+  margin-left: 0px; !important
+  background-color: #f5f5f570;
+  margin-top: -10px;
+  margin-bottom: -25px;
+
+}
+.cardbox-commentfield img{
+  width: 60px !important;
+  height: 60px !important;
+  border: 2px solid #58073d13;
+  margin-left: -70px;
+  margin-top: -5px;
+} 
+
+.card-commentfield-text{
+  padding: 20px;
+  margin-top: 55px;
+
+}
+
+  }
+  .cardbox-comments .comment-avatar img{
+    margin-top: 20px;
+    margin-right: 10px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+  }
+  .cardbox-comments .comment-body {
+    overflow: auto;
+  }
+  .commentfield {
+   margin-top: 20px;
+   margin-left: 70px;
+   width: 400px;
+  }
+  .bg-comment-color{
+    background-color: #f2f3f5;
+  }
+  .search input[type="text"] {
+   background-color: #fff;
+   line-height: 10px;
+   padding: 15px 60px 20px 10px;
+   border: none;
+   border-radius: 4px;
+   width: 350px;
+   font-family: 'Rokkitt', serif;
+   font-size: 14px;
+   color: #8d8d8d;
+   height: inherit;
+   font-weight: 700;
+  }
+  .search button {
+   position: absolute;
+   right: 0;
+   top: 0px;
+   border: none;
+   background-color: transparent;
+   color: #bbbbbb;
+   padding: 15px 25px;
+   cursor: pointer;
+   
+   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  }
+  .search button i {
+   font-size: 20px;
+   line-height: 30px;
+   display: block;
+  }
+  
+  
+  /* ------------------------------- */
+  /* Author
+  ---------------------------------- */
+  .author a{
+   font-family: 'Rokkitt', serif;
+   font-size: 16px;
+   color: #00C4CF;
+  }
+  .author p{
+   font-family: 'Rokkitt', serif;
+   font-size: 16px;
+   color: #8d8d8d;
+  }
+
+  /* sidebar */
+  .sidebar {
+    
+  }
+

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="sv">
+    
+<head>
+    <!-- Used to activate bootstrap-->
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">     
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>        
+     <!-- End " Used to actiavet bootstrap"-->
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+    <title>Student</title>
+    <link rel="icon" href="{{url_for('static',filename='isek.png')}}">
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+          <div class="container">
+            <a class="navbar-brand mr-4" href="/">
+              <img class="headericon" src="{{ url_for('static', filename='isekicon.png') }}">
+            </img>Student</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+              <div class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" href="{{ url_for('user.dashboard') }}">Dashboard</a>
+                <div class="dropdown">
+                  <a class="nav-item nav-link" id="dropdownMenu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Bra länkar
+                  </a>
+                  
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="https://www.facebook.com/groups/184401261665718">Boklådan</a>
+                    <a class="dropdown-item" href="https://www.facebook.com/groups/365012516964373">I-nofficiella Bilder & Citat</a>
+                    <a class="dropdown-item" href="https://cloud.timeedit.net/lu/web/lth1/">Scheman</a>
+                  </div>
+                </div>
+                
+              </div>
+              <!-- Navbar Right Side -->
+              <div class="navbar-nav">
+                
+                
+
+                <a class="nav-item nav-link" href="/" data-toggle="modal" data-target="#WarningModalCenter"><svg class="bi bi-flag" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M3.5 1a.5.5 0 01.5.5v13a.5.5 0 01-1 0v-13a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+                  <path fill-rule="evenodd" d="M3.762 2.558C4.735 1.909 5.348 1.5 6.5 1.5c.653 0 1.139.325 1.495.562l.032.022c.391.26.646.416.973.416.168 0 .356-.042.587-.126a8.89 8.89 0 00.593-.25c.058-.027.117-.053.18-.08.57-.255 1.278-.544 2.14-.544a.5.5 0 01.5.5v6a.5.5 0 01-.5.5c-.638 0-1.18.21-1.734.457l-.159.07c-.22.1-.453.205-.678.287A2.719 2.719 0 019 9.5c-.653 0-1.139-.325-1.495-.562l-.032-.022c-.391-.26-.646-.416-.973-.416-.833 0-1.218.246-2.223.916a.5.5 0 11-.515-.858C4.735 7.909 5.348 7.5 6.5 7.5c.653 0 1.139.325 1.495.562l.032.022c.391.26.646.416.973.416.168 0 .356-.042.587-.126.187-.068.376-.153.593-.25.058-.027.117-.053.18-.08.456-.204 1-.43 1.64-.512V2.543c-.433.074-.83.234-1.234.414l-.159.07c-.22.1-.453.205-.678.287A2.719 2.719 0 019 3.5c-.653 0-1.139-.325-1.495-.562l-.032-.022c-.391-.26-.646-.416-.973-.416-.833 0-1.218.246-2.223.916a.5.5 0 01-.554-.832l.04-.026z" clip-rule="evenodd"/>
+                </svg > Prickar({{ user_info.warnings }})</a>
+
+                <a class="nav-item nav-link" href="/upcomingevents"><svg class="bi bi-calendar" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M14 0H2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z" clip-rule="evenodd"/>
+                  <path fill-rule="evenodd" d="M6.5 7a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm-9 3a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2zm3 0a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+                </svg> Kommande event </a>
+                
+                <div class="dropdown">
+                    <a class="nav-item nav-link" id="dropdownMenu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg class="bi bi-file-earmark-text" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 1h5v1H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V6h1v7a2 2 0 01-2 2H4a2 2 0 01-2-2V3a2 2 0 012-2z"/>
+                        <path d="M9 4.5V1l5 5h-3.5A1.5 1.5 0 019 4.5z"/>
+                        <path fill-rule="evenodd" d="M5 11.5a.5.5 0 01.5-.5h2a.5.5 0 010 1h-2a.5.5 0 01-.5-.5zm0-2a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5zm0-2a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+                      </svg> 
+                      Skapa
+                    </a>
+                    
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="{{ url_for('posts.new_event') }}">Event</a>
+                      <a class="dropdown-item" href="{{ url_for('posts.new_post') }}">Info</a>
+                      <a class="dropdown-item" href="#">Karriär</a>
+                    </div>
+                  </div>
+                <a class="nav-item nav-link" href="/booking"><svg class="bi bi-calendar2-check" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                  <path fill-rule="evenodd" d="M14 2H2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM2 1a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
+                  <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z"/>
+                  <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5V4z"/>
+                </svg> Bokningar</a>
+
+                <div class="dropdown">
+                    <a class="nav-item nav-link" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg class="bi bi-caret-down-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z"/>
+                          </svg>
+                    </a>
+                    <!-- Falldown meny, account etc.. -->
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item" class="nav-item nav-link" href="/account">Konto</a>
+                      <a class="dropdown-item" type="button" >Prickar({{ current_user.user_info.warnings }})</a>
+                      <a class="dropdown-item" type="button">Bjud in en vän</a>
+                      <a class="dropdown-item" class="nav-item nav-link" href="/logout">Logga ut</a>
+                    </div>
+                    
+                  </div>
+                  
+                
+                
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <main role="main" class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-8">
+
+              {% block content %}{% endblock %}
+          </div>
+        </div>
+      </main>
+    <!-- More bootstrap features-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- End "more bootstrap" features-->
+    <!-- ModalWarning -->
+    <div class="modal fade" id="WarningModalCenter" tabindex="-1" role="dialog" aria-labelledby="WarningModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Varför har vi ett pricksystem?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"><p>
+            Sektionen drivs av många ideela krafter som tillsammans skapar evenemang som förgyller våra studentliv. Dessa event är allt från casekvällar, nollningsevenmang, lunchföreläsningar och sittningar. <br><br>
+            Vi är eftertraktade på marknaden och företag betalar mycket pengar för att få hålla lunchföreläsningar för oss. Att inte gå på dessa medför att vårat förtroende bland näringslivet minskas. <br><br>
+            Varje event skapas och hålls av våra egna studenter och detta görs i en ideel regi.
+            Därför har sektionen bestämt att om du fått två prickar förlorar du möjligheten att anmäla dig till terminens samtliga event. <br> </p>
+
+            <div th:if="${not #lists.isEmpty(user_warning)}">
+              <b> Du har fått prick på dessa evenemang:</b> <br>
+              {% for warning in user_warning %}
+              <b> <a class="article-title text-center" href="{{ url_for('posts.post', post_id=warning.id) }}">{{ warning.title }} - {{ warning.event.event_date.strftime( '%d %b') }}</a></b> <br>
+              {% endfor %}
+             </div>
+            
+          </div>
+          
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Betala straffavgift</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Stäng</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

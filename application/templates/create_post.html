@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block content %}
+
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='test.css')}}">
+  <section class="hero ">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+      <div class="container ">
+          <div class="row justify-content-center">
+              <div class="col-lg-9">
+                  <div class="cardbox shadow-lg bg-white">
+                      <div class="cardbox-heading"> <!-- Heading start-->
+                        <b> Nytt inlägg</b>
+                        
+                  </div><!-- Heading-->
+                  <div style="padding: 20px;">
+                    <div class="form-group">
+                        {{ form.title.label(class="form-control-label") }}
+                        {% if form.title.errors %}
+                            {{ form.title(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.title.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.title(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.content.label(class="form-control-label") }}
+                            {% if form.content.errors %}
+                        {{ form.content(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.content.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                            {% else %}
+                                {{ form.content(class="form-control form-control-lg") }}
+                            {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.youtube.label(class="form-control-label") }}
+                        {% if form.youtube.errors %}
+                            {{ form.youtube(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.youtube.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.youtube(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.picture.label() }}
+                        {{ form.picture(class="form-control-file") }}
+                        {% if form.picture.errors %}
+                            {% for error in form.picture.errors %}
+                                <span class="text-danger">{{ error }}</span></br>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                  </div> <!-- item-->
+                  
+                  <div class="text-center"> <!-- Attendning button-->
+                    <div style="border-top: 2px solid #f4f4f4;"> 
+                        <div style="margin-top:8px;">
+                            
+                                <div class="form-group">
+                                    {{ form.submit(class="cardbox-attending btn btn-outline-secondary") }}
+                                </div>
+                            
+                        </div>
+                  </div>
+          </div><!--base-->
+      </div>
+    </form>
+  </div> <!-- Container-->
+</section>
+
+{% endblock content %}

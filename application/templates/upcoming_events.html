@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- Test-->
+<script src="https://js.stripe.com/v3/"></script>
+<!-- Test-->
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='test.css')}}">
+<section class="hero ">
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="cardbox shadow-lg bg-white">
+                    <div class="cardbox-heading">
+                        <div class="media m-0">
+                            
+                            <div class="media-body">
+                              
+                                <p class="m-0">Kommande evenemang</p>
+                            
+                            </div>
+                        </div> 
+                    </div><!-- Heading-->
+                    <div class="cardbox-item" style="margin-top:5px;">
+                        {% for event_id in event_id.items %}
+
+                        <div class="row booking-field" style="padding: 10px; margin-top:-4px;">
+                          
+                          <div class="col-2"><b>{{ event_id.event.event_date.strftime( '%d %b') }}</b> <br>{{ event_id.event.event_date.strftime( '%A') }}                          
+                          </div>
+                          <div class="col-4"><b> <a class="article-title" href="{{ url_for('posts.post', post_id=event_id.id )}}"> {{ event_id.event.event_name  }}</a></b> <br>{{ event_id.event.location }} {{ event_id.event.event_time }}
+                          </div>
+                          <div class="col-6 text-right" style="margin-top: 10px;">
+                            <a class="article-title" href="{{ url_for('posts.user_posts', id=event_id.author.id) }}">{{ event_id.author.username }}</a>
+                          </div>
+                          
+                      </div>
+                        
+                       {% endfor %}
+                    </div> <!-- Content-->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock content %}

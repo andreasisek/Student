@@ -1,0 +1,65 @@
+body {
+	font-family: 'Roboto', sans-serif;
+	background: url(nollning.jpg) no-repeat center center fixed;
+	background-size: cover;
+}
+
+.main-section {
+	margin: 0 auto;
+	margin-top: 130px;
+	padding: 0;
+}
+
+.modal-content {
+	background-color: #72012eda;
+	padding: 0px 18px;
+	border-radius:15px;
+}
+.user-img img {
+	height: 150px;
+	width: 150px;
+}
+.user-img {
+	margin-top: 50px;
+	margin-bottom: 0px;
+}
+.quote {
+	margin-top: 20px;
+}
+.form-group {
+	margin-bottom: 25px;
+}
+.form-group input{
+	height: 42px;
+	border-radius: 5px;
+	border: 0;
+	font-size: 18px;
+	letter-spacing: 0px;
+}
+.form-input button {
+	width: 40%;
+	margin: 5px 0 25px;
+
+}
+.btn-success {
+	background-color: #1c6288;
+	font-size: 19px;
+	border-radius: 5px;
+	padding: 7px 14px;
+	border: 1px solid #daf1ff;
+	margin-bottom: 20px;
+
+}
+.btn-success:hover {
+	background-color: #13445e;
+	border: 1px solid #daf1ff;
+
+}
+.forgot {
+	padding: 0px 0 0px;
+	margin-bottom: 40px;
+	margin-top: -10px;
+}
+.forgot a{
+	color: #daf1ff
+}

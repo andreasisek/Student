@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for post in posts.items %}
+    <article class="media content-section col-sm-10"></article>
+      <div class="post-header"> 
+        <img class="rounded-circle article-img mr-3" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}"></img>
+        <a class="font-weight-bold mt-0" href="{{url_for('posts.user_posts', id=post.author.id)}}">{{ post.author.username }} </a>
+          <small class="text-muted text-left">{{ post.date_posted.strftime('%d, %B, %Y')  }} &nbsp; </small>
+          <div class="media-body">
+          <div class=text-left>
+          <small class="text-muted mr-1"><svg class="bi bi-geo-alt" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+          </svg>
+          {{ post.event.location }}
+          </small>
+          <small class="text-muted mr-1"><svg class="bi bi-calendar-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 2a2 2 0 012-2h12a2 2 0 012 2H0z"/>
+            <path fill-rule="evenodd" d="M0 3h16v11a2 2 0 01-2 2H2a2 2 0 01-2-2V3zm6.5 4a1 1 0 100-2 1 1 0 000 2zm4-1a1 1 0 11-2 0 1 1 0 012 0zm2 1a1 1 0 100-2 1 1 0 000 2zm-8 2a1 1 0 11-2 0 1 1 0 012 0zm2 1a1 1 0 100-2 1 1 0 000 2zm4-1a1 1 0 11-2 0 1 1 0 012 0zm2 1a1 1 0 100-2 1 1 0 000 2zm-8 2a1 1 0 11-2 0 1 1 0 012 0zm2 1a1 1 0 100-2 1 1 0 000 2zm4-1a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd"/>
+          </svg>
+          {{ post.event.event_date }}
+          </small>
+          <small class="text-muted mr-1">
+            <svg class="bi bi-clock-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M16 8A8 8 0 110 8a8 8 0 0116 0zM8 3.5a.5.5 0 00-1 0V9a.5.5 0 00.252.434l3.5 2a.5.5 0 00.496-.868L8 8.71V3.5z" clip-rule="evenodd"/>
+            </svg>
+            {{ post.event.event_time }}
+          </small>
+          <small class="text-muted mr-1">
+            <svg class="bi bi-bell-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 16a2 2 0 002-2H6a2 2 0 002 2zm.995-14.901a1 1 0 10-1.99 0A5.002 5.002 0 003 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+            </svg>
+            {{ post.event.last_registration }}
+           </small>
+          <small class="text-muted mr-1">
+            <svg class="bi bi-people-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 100-6 3 3 0 000 6zm-5.784 6A2.238 2.238 0 015 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 005 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" clip-rule="evenodd"/>
+          </svg>
+            {{ replies|length  }} ({{ post.event.max_participants }})
+            
+        </small>
+        </div>
+            <div class="article-metadata">
+
+              
+            </div>
+          </div>
+        <div class="post-content">
+          <h2>
+            <a class="article-title" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a>
+          </h2>
+        <div>
+          <p class="article-content">{{ post.content }}
+          </p>
+          <div class="text-center">
+            {% if post.image_file != "" %}
+              <img class="img-fluid  w-100 p-3"mw-100 alt="Responsive image" src="{{ url_for('static', filename='post_pics/' + post.image_file) }}">
+            </img>
+          </div>
+        </div>
+      </div>
+        {% endif %}
+    </div>
+    </article>
+    {% endfor %}
+    <div class="text-center">
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+      {% if page_num %}
+        {% if posts.page == page_num %}
+          <a class="btn btn-info mb-4" href="{{ url_for('posts.home', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+          <a class="btn btn-outline-info mb-4" href="{{ url_for('posts.home', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+      {% else %}
+        ...
+      {% endif %}
+    {% endfor %}
+    </div>
+{% endblock content %}

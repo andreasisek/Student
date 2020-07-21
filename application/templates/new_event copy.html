@@ -1,0 +1,152 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Nytt inlägg</legend>
+                <div class="form-group">
+                    {{ form.title.label(class="form-control-label") }}
+                    {% if form.title.errors %}
+                        {{ form.title(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.title.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.title(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.content.label(class="form-control-label") }}
+                    {% if form.content.errors %}
+                        {{ form.content(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.content.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.content(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.max_participants.label(class="form-control-label") }}
+                    {% if form.max_participants.errors %}
+                        {{ form.max_participants(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.max_participants.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.max_participants(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.last_registration.label(class="form-control-label") }}
+                    {% if form.last_registration.errors %}
+                        {{ form.last_registration(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.last_registration.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.last_registration(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.event_date.label(class="form-control-label") }}
+                    {% if form.event_date.errors %}
+                        {{ form.event_date(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.event_date.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.event_date(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.time.label(class="form-control-label") }}
+                    {% if form.time.errors %}
+                        {{ form.time(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.time.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.time(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.location.label(class="form-control-label") }}
+                    {% if form.location.errors %}
+                        {{ form.location(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.location.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.location(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                {{ form.picture.label() }}
+                {{ form.picture(class="form-control-file") }}
+                {% if form.picture.errors %}
+                    {% for error in form.picture.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="cardbox-attending btn btn-outline-secondary") }}
+            </div>
+        </form>
+    </div>
+    <div class="border-top pt-3">
+    </div>
+
+    
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='test.css')}}">
+  <section class="hero ">
+      <div class="container ">
+          <div class="row justify-content-center">
+              <div class="col-lg-9">
+                  <div class="cardbox shadow-lg bg-white">
+                      <div class="cardbox-heading">
+                        <div class="media m-0">
+                          <div class="d-flex mr-2">
+                              <b> Kioskkisokken</b>
+                      </div> 
+                  </div><!-- Heading-->
+                  <div class="cardbox-content">
+                      <b> Morits </b>
+                  </div> <!-- item-->
+                  <div class="cardbox-base">
+                          <b> gunnar </b>
+                          
+
+                  </div> <!--Base-->
+                  <div class="text-center"> <!-- Attendning button-->
+                    <div style="border-bottom: 2px solid #f4f4f4; ">
+                        <b> hasse </b>
+                  </div>
+
+                
+          
+          </div><!--base-->
+      </div>
+      
+  </div> <!-- Container-->
+</section>
+
+{% endblock content %}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Isek-student</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='login.css')}}">
+</head>
+<body>
+
+  <div class="modal-dialog text-center">
+      <div class="col-sm-9 main-section">
+        <div class="modal-content">
+          <div class="col-12 user-img">
+            <img src="{{url_for('static',filename='isek.png')}}">
+          </div>
+          <div class="quote">
+             <p class="text-light font-italic">"Gift dig aldrig med en karriärist" <br/> - Mona B </p>
+          </div>
+          <div class="col-12 form-input">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                  {% if form.email.errors %}
+                      {{ form.email(class="form-control form-control-lg is-invalid" , placeholder="email") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.email.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.email(class="form-control form-control-lg", placeholder="email") }}
+                  {% endif %}
+              </div>
+              <div class="form-group">
+                  {% if form.password.errors %}
+                      {{ form.password(class="form-control form-control-lg is-invalid", placeholder="password") }}
+                      <div class="invalid-feedback">
+                          {% for error in form.password.errors %}
+                              <span>{{ error }}</span>
+                          {% endfor %}
+                      </div>
+                  {% else %}
+                      {{ form.password(class="form-control form-control-lg", placeholder="password") }}
+                  {% endif %}
+              </div>
+              
+
+
+              <div>
+                {{ form.submit(class="btn btn-success") }}
+              </div>
+            </form>
+          </div>
+          <div class="col-12 forgot">
+            <a href="#">Glömt lösenord?</a>
+          </div>
+      </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+

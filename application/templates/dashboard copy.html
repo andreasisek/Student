@@ -1,0 +1,223 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='test.css')}}">
+<!-- För grafer-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0-rc.1/Chart.bundle.js"></script>
+ <!-- Sidebar -->
+ <div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Bootstrap Sidebar</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <p>Dummy Heading</p>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#">Home 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li>
+                        <a href="#">Page 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 3</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Portfolio</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+
+<!-- Row 1-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="cardbox shadow-lg bg-white col-lg-4" style="margin: 10px;">
+            <div style="padding:5px;">
+                <h5 class="card-title text-center">Jämställdhet</h5>  
+                <div class="d-flex flex-row justify-content-center">            
+                    <div class="text-center "><img style="width:50%;" src="{{ url_for('static', filename='extras/woman.svg' )}}"><br>{{ percentage_female }}</div>
+                    <div class="text-center"><img style="width:50%;" src="{{ url_for('static', filename='extras/man.svg' )}}"><br>{{ percentage_male }}</div>
+                </div>  
+            </div>
+        </div>
+        <div class="cardbox shadow-lg bg-white col-lg" style="margin: 10px;">
+            <div style="padding:5px;">
+                <h5 class="text-center">Hållna event</h5>
+                <h1 class="align-center text-center">{{ num_events }}</h1>
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+
+            </div>
+        </div>
+        <div class="cardbox shadow-lg bg-white col-lg" style="margin: 10px;">
+            <div style="padding:5px;">
+            <h5 class="text-center">Totala besökare</h5>
+            <h1 class="align-center text-center">{{ num_tot }}</h1>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<!-- End Row 1-->
+<!-- Row 2-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="cardbox shadow-lg bg-white col-lg-8" style="margin: 10px;">
+            <div style="padding:5px;">
+                <h5 class="card-title text-center">Årshjulet</h5>  
+                <div class="d-flex flex-row" style="padding:10px;">            
+                    <b>Datum:</b><p>påbörja stockholmsresan </p>
+                </div>  
+            </div>
+        </div>
+        
+        <div class="cardbox shadow-lg bg-white col-lg" style="margin: 10px;">
+            <div style="padding:5px;">
+            <h5 class="text-center">Snabblänkar</h5>
+            <b class="text-left" style="margin-left:10px;">1:</b><br>
+            <b class="text-left" style="margin-left:10px;">2:</b><br>
+            <b class="text-left" style="margin-left:10px;">3:</b><br>
+            <b class="text-left" style="margin-left:10px;">4:</b><br>
+            <b class="text-left" style="margin-left:10px;">5:</b><br>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Row 2-->
+<!-- Row 3-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="cardbox shadow-lg bg-white" style="margin: 10px;">
+            <div style="padding:10px;;">
+                <h5 class="text-center">Fördelning årskuser</h5>
+                <canvas id="semesterChart"></canvas>
+                <script src="static/semester_graph.js"></script>
+            </div>
+        </div>
+        <div class="cardbox shadow-lg bg-white col-lg" style="margin: 10px;">
+            <div style="padding:5px;">
+                <h5 class="text-center">sektionens årshistorik</h5>
+                <canvas id="lineChart"></canvas>
+                <script>
+                var date = {{ date | safe }} 
+                var attending = {{ attending | safe }}
+                date.forEach((num1, index) => {
+                    const num2 = attending[index];
+                    console.log("t:" + num1, num2);
+                });
+
+                const CHART = document.getElementById("lineChart");
+                    let lineChart = new Chart(CHART, {
+                        type: 'line',
+                        data: {
+                            
+                            datasets: [
+                                {
+                                    
+                                    fill: true,
+                                    lineTension: 0.2,
+                                    backgroundColor: "rgba(114, 1, 46, 0.2)",
+                                    borderColor: "rgba(114, 1, 46, 0.6)",
+                                    borderCapStyle: 'butt',
+                                    borderDash: [],
+                                    borderDashOffset: 0.0,
+                                    borderJoinStyle: 'miter',
+                                    pointBorderColor: "rgba(114, 1, 46, 0.6)",
+                                    pointBackgroundColor: "#fff",
+                                    pointBorderWidth: 1,
+                                    pointHoverRadius: 5,
+                                    pointHitRadius: 10,
+                                    spanGaps: true,
+                                    data: [{
+                                        t: '2015-03-15T13:03:00Z',
+                                        y: 12
+                                    },
+                                    {
+                                        t: "2015-03-16T13:02:00Z",
+                                        y: 21
+                                    },
+                                    {
+                                        t: "2015-04-25T14:12:00Z",
+                                        y: 32
+                                    },
+                                    {
+                                        t: "2015-10-25T14:12:00Z",
+                                        y: 32
+                                    },
+                                    {
+                                        t: '2020-10-10T00:00:00',
+                                        y: 10
+                                    }
+                                    ],
+                                }           
+                            ]},
+                            options: {
+                                scales: {
+                                    xAxes: [{
+                                        type: 'time',
+                                        time: {
+                                            unit: 'month'
+                                        },
+                                        distribution: 'linear'
+                                    }]
+                                },
+                                legend: {
+                                    display: false
+                                },
+                                
+                            },
+                        
+                        });</script>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Row 3-->
+</div>
+</div>
+</div>
+<!-- /#wrapper -->
+ <!-- Menu Toggle Script -->
+<script>
+    $(document).ready(function () {
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+
+    });
+</script>
+
+{% endblock content %}
+
